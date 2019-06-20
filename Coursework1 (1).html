@@ -1,0 +1,1161 @@
+<html>
+<head>
+
+<!--
+ I have read and understood the sections of plagiarism in the College Policy
+# on assessment offences and confirm that the work is my own,
+# with the work of others clearly acknowledged.
+# I give my permission to submit my work to the plagiarism testing database
+# that the College is using and test it using plagiarism detection software,
+# search engines or meta-searching software.
+
+
+#Place you name and course details here
+# Harshida Rami
+# MSC in I
+
+
+
+
+.-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<style type ="text/css">
+//css used for enhance color,fontsize for  body,header,button and text
+body{
+background-color:#F8E5E5;
+}
+.header{
+background-color: #C39EA0;
+
+padding:20px 20px 10px;
+
+}
+
+ h1{
+ text-align: center;
+
+ color: white;
+ font-size:30px;
+  font-style: bold;
+ }
+
+button {
+    border-radius: 10px;
+    height: 45px;
+    width: 100px;
+    text-align: center;
+    background-color: #C39EA0;
+    font-size: 15px;
+     font-style: bold;
+ color: white;
+    }
+legend{
+font-size: 15px;
+color:#C39EA0;
+}
+//css for table propery to enhance color font and width.
+#datatable {
+    border-collapse: collapse;
+    
+
+}
+#wdatatable{
+ border-collapse: collapse;
+    
+  
+
+}
+
+
+th, td {
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+    
+}
+th {
+    background-color:  #C39EA0;
+    color: white;
+    font-style: bold;
+    font-size: 15px;
+   width:15%;
+  
+}
+//for Div to put two table togehter
+.floatLeft {
+
+ width: 50%; float: left;
+ border: 3px solid black  ;
+ 
+  }
+.floatRight
+ {width: 50%; align: right; 
+ border: 3px solid black  ;
+ }
+
+</style>
+
+
+<script type = "text/javascript" >
+         $(document).ready(function() {
+         
+			
+            $("#driver").click(function(event){
+          
+            	$("#datatable").empty()
+                 
+                  var getvalue =$("#gender option:selected").val();
+
+              
+
+                  
+                  
+                   if(getvalue == "MEN"){
+	
+            	
+               $.getJSON('wimbledon-men-2013.json', function(jd) {
+               
+            	 var Header= ["Round","Players","Set1","Set2","Set3","Set4","Set5"];
+            	  	var THead = $( "<thead></thead>");
+            	  	for (i =0;i<Header.length;i++){
+            	  		
+            	  		THead.append("<th>" + Header[i] + "</th>");
+            	  		
+            	  	 }
+            	  	 
+                 
+                   $("#datatable").append(THead);
+                   
+            	  
+						 
+            	   $.each(jd.match, function (key, data) {
+            		   var round1 = (data.round)
+            		   
+            		   $.each(data.player, function (index,data2) {
+            			   
+            			  var  Name = (data2.name)
+            			  if(data2.outcome === "won")
+            				  {
+            				  
+            				 var playername = 	 Name.bold();
+            				  }
+            			  else{
+            				  
+            				  playername = Name
+            			  }
+            			   
+            			  
+                         
+                         
+                          
+                         
+            			  
+            			   var TableRow =$( "<tr></tr>");
+            			   TableRow.append( "<td>" + round1 + "</td>");
+            			   TableRow.append( "<td>" + playername + "</td>");
+               		    
+               	
+            		
+            		 
+            		   
+            		   $.each(data2.set, function (index1,data3) {
+            			   var Set1 = [];
+            			   Set += index;
+            			  
+            			   TableRow.append("<td>" + data3 + "</td>");
+            			 
+            			    $("#datatable").append(TableRow);
+                  		
+            			  
+                           
+                  		});
+            		  
+            			});
+            		  
+            		  
+            		});
+            	   
+           	
+
+               });
+               
+        	  	
+            	  	}
+            	  	//for woman data
+            	  	else if(getvalue == "WOMEN"){
+                		
+                   	
+                       $.getJSON('wimbledon-women-2013.json', function(jd) {
+                       
+                    	 var Header= ["Round","Players","Set1","Set2","Set3"];
+                    	  	var THead = $( "<thead></thead>");
+                    	  	for (i =0;i<Header.length;i++){
+                    	  		
+                    	  		THead.append("<th>" + Header[i] + "</th>");
+                    	  		
+                    	  	 }
+                    	  	 
+                         
+                           $("#datatable").append(THead);
+                           
+                    	  
+        						 
+                    	   $.each(jd.match, function (key, data) {
+                    		   var round1 = (data.round)
+                    		   
+                    		   $.each(data.player, function (index,data2) {
+                    			   
+                    			  var  Name = (data2.name)
+                    			  if(data2.outcome === "won")
+                    				  {
+                    				  
+                    				 var playername = 	 Name.bold();
+                    				  }
+                    			  else{
+                    				  
+                    				  playername = Name
+                    			  }
+                    			   
+                    			  
+                                 
+                                 
+                                  
+                                 
+                    			  
+                    			   var TableRow =$( "<tr></tr>");
+                    			   TableRow.append( "<td>" + round1 + "</td>");
+                    			   TableRow.append( "<td>" + playername + "</td>");
+                       		    
+                       	
+                    		
+                    		 
+                    		   
+                    		   $.each(data2.set, function (index1,data3) {
+                    			  
+                    			   TableRow.append("<td>" + data3 + "</td>");
+                    			 
+                    			    $("#datatable").append(TableRow);
+                          		
+                    			  
+                                   
+                          		});
+                    		  
+                    			});
+                    		  
+                    		  
+                    		});
+                    	   
+                   	
+
+                       });
+                       
+                	  	
+                    	  	}
+            		else{  //if not selected any value.
+            	  		if(getvalue == "Select Match"){ //for display two table.
+            	  		
+                        $.getJSON('wimbledon-men-2013.json', function(jd) {
+                        
+                     	 var Header= ["Round","Players","Set1","Set2","Set3","Set4","Set5"];
+                     	  	var THead = $( "<thead></thead>");
+                     	  	for (i =0;i<Header.length;i++){
+                     	  		
+                     	  		THead.append("<th>" + Header[i] + "</th>");
+                     	  		
+                     	  	 }
+                     	  	 
+                          
+                            $("#datatable").append(THead);
+                            
+                     	  
+         						 
+                     	   $.each(jd.match, function (key, data) {
+                     		   var round1 = (data.round)
+                     		   
+                     		   $.each(data.player, function (index,data2) {
+                     			   
+                     			  var  Name = (data2.name)
+                     			  if(data2.outcome === "won")
+                     				  {
+                     				  
+                     				 var playername = 	 Name.bold();
+                     				  }
+                     			  else{
+                     				  
+                     				  playername = Name
+                     			  }
+                     			   
+                     			  
+                                  
+                                  
+                                   
+                                  
+                     			  
+                     			   var TableRow =$( "<tr></tr>");
+                     			   TableRow.append( "<td>" + round1 + "</td>");
+                     			   TableRow.append( "<td>" + playername + "</td>");
+                        		    
+                        	
+                     		
+                     		 
+                     		   
+                     		   $.each(data2.set, function (index1,data3) {
+                     			
+                     			  
+                     			   TableRow.append("<td>" + data3 + "</td>");
+                     			 
+                     			    $("#datatable").append(TableRow);
+                           		
+                     			  
+                                    
+                           		});
+                     		  
+                     			});
+                     		  
+                     		  
+                     		});
+                     	   
+                    	
+
+                        });
+            	  		}//if statement finsih.
+            	  		if(getvalue == "Select Match"){ //display right side
+                        $.getJSON('wimbledon-women-2013.json', function(jd) {
+                            
+                       	 var Header= ["Round","Players","Set1","Set2","Set3"];
+                       	  	var THead = $( "<thead></thead>");
+                       	  	for (i =0;i<Header.length;i++){
+                       	  		
+                       	  		THead.append("<th>" + Header[i] + "</th>");
+                       	  		
+                       	  	 }
+                       	  	 
+                            
+                              $("#wdatatable").append(THead);
+                              
+                       	  
+           						 
+                       	   $.each(jd.match, function (key, data) {
+                       		   var round1 = (data.round)
+                       		   
+                       		   $.each(data.player, function (index,data2) {
+                       			   
+                       			  var  Name = (data2.name)
+                       			  if(data2.outcome === "won")
+                       				  {
+                       				  
+                       				 var playername = 	 Name.bold();
+                       				  }
+                       			  else{
+                       				  
+                       				  playername = Name
+                       			  }
+                       			   
+                       			  
+                                    
+                                    
+                                     
+                                    
+                       			  
+                       			   var TableRow =$( "<tr></tr>");
+                       			   TableRow.append( "<td>" + round1 + "</td>");
+                       			   TableRow.append( "<td>" + playername + "</td>");
+                          		    
+                          	
+                       		
+                       		 
+                       		   
+                       		   $.each(data2.set, function (index1,data3) {
+                       			  
+                       			   TableRow.append("<td>" + data3 + "</td>");
+                       			 
+                       			    $("#wdatatable").append(TableRow);
+                             		
+                       			  
+                                      
+                             		});
+                       		  
+                       			});
+                       		  
+                       		  
+                       		});
+                       	   
+                      	
+
+                          });
+                        
+                        
+                        
+            	  		}	
+            	  		
+            	  		
+            	  		
+            	  		
+            	  	}
+                   
+                   
+                   
+            	  	
+            	  	
+            	  	
+            	  	
+            	  	
+            	  	
+            }); //click buttion load data finsihs 
+            
+            
+            
+            
+            
+            
+            
+            
+            
+  //question finish here
+  //.....................................................................................................................................................
+         
+         	//question 3
+
+    	    $("#playerclick").click(function(event){
+    	  
+    	    	$("#datatable").empty()
+    	    	
+    	    	//remove selected one
+    	    	$('option:selected', 'select[id="#choice"]').removeAttr('selected');
+    	    	
+    	         
+    	          var PlayerName =$("#playername").val();
+    	    	 
+				var Getchoice = $("#choice option:selected").val();
+				
+    	  
+				 var Header= ["Round","Players","Outcome","Set1","Set2","Set3","Set4","Set5"];
+            	  	var THead = $( "<thead></thead>");
+            	  	for (i =0;i<Header.length;i++){
+            	  		
+            	  		THead.append("<th>" + Header[i] + "</th>");
+            	  		
+            	  	 }
+            	  	                  
+                   $("#datatable").append(THead);
+				
+    	          
+    	          
+    	        
+
+    	    	
+    	       
+    	    		$.getJSON('wimbledon-men-2013.json', function (data) {
+
+   		    		
+    	    		    // Iterate the groups first.
+    	    		    $.each(data.match, function (key, value) {
+    	    		    	var Round = (value.round)
+    	    		    $.each(value.player, function (index,data2) {
+    	    		    	Pname = (data2.name);
+    	    		    	findindex = Pname.indexOf(PlayerName) 
+    	    		    	if(PlayerName==Pname && Getchoice=='Equals'){
+    	    		    		var TableRow =$( "<tr></tr>");
+                 			   TableRow.append( "<td>" + Round + "</td>");
+                 			   TableRow.append( "<td>" + Pname + "</td>");
+                 			  TableRow.append( "<td>" + data2.outcome + "</td>");
+                    		    
+                    	
+                 		
+                 		 
+                 		   
+                 		   $.each(data2.set, function (index1,data3) {
+                 			  
+                 			   TableRow.append("<td>" + data3 + "</td>");
+                 			 
+                 			    $("#datatable").append(TableRow);
+                       		
+                 			  
+                                
+                       		});
+                 		  
+    	    		    		
+    	                           //boday
+    	    		    		
+    	    		    		
+    	    		    	}
+    	    		    	
+    	    		    	else if ( Getchoice=='Contains' && findindex >= 0 ){
+    	    		    		
+    	    		    		var TableRow =$( "<tr></tr>");
+                  			   TableRow.append( "<td>" + Round + "</td>");
+                  			   TableRow.append( "<td>" + Pname + "</td>");
+                  			  TableRow.append( "<td>" + data2.outcome + "</td>");
+                     		    
+                     	
+                  		
+                  		 
+                  		   
+                  		   $.each(data2.set, function (index1,data3) {
+                  			  
+                  			   TableRow.append("<td>" + data3 + "</td>");
+                  			 
+                  			    $("#datatable").append(TableRow);
+                        		
+                  			  
+                                 
+                        		});
+    	    		    		
+    	    		    	
+    	    		    		
+    	    		    	}
+    	    		    	
+    	    		    	
+    	    		    	
+    	    		    	
+    	    		    	
+    	    		    });
+    	    		    			
+    	    		    			
+    	    		    			
+    	    		    			
+    	    		    			
+    	    		    			
+    	    		    });
+    	    		});
+    	    	
+    	    		
+    	    		
+    	    		
+    	    		
+    	    		
+    	    		
+    	    		
+    	    
+    	    		
+	    		
+	    			
+    	    	
+    	    	       
+    	    		$.getJSON('wimbledon-women-2013.json', function (data) {
+    	    			
+    	    		    // Iterate the groups first.
+    	    		    $.each(data.match, function (key, value) {
+    	    		    	var Round = (value.round)
+    	    		    $.each(value.player, function (index,data2) {
+    	    		    	Pname = (data2.name);
+    	    		    	findindex = Pname.indexOf(PlayerName) 
+    	    		    	if(PlayerName==Pname && Getchoice=='Equals'){
+    	    		    		var TableRow =$( "<tr></tr>");
+                 			   TableRow.append( "<td>" + Round + "</td>");
+                 			   TableRow.append( "<td>" + Pname + "</td>");
+                 			  TableRow.append( "<td>" + data2.outcome + "</td>");
+                    		    
+                    	
+                 		
+                 		 
+                 		   
+                 		   $.each(data2.set, function (index1,data3) {
+                 			  
+                 			   TableRow.append("<td>" + data3 + "</td>");
+                 			 
+                 			    $("#datatable").append(TableRow);
+                       		
+                 			  
+                                
+                       		});
+                 		  
+    	    		    		
+    	                           //boday
+    	    		    		
+    	    		    		
+    	    		    	}
+    	    		    	
+    	    		    	else if ( Getchoice=='Contains' && findindex >= 0 ){
+    	    		    		
+    	    		    		var TableRow =$( "<tr></tr>");
+                  			   TableRow.append( "<td>" + Round + "</td>");
+                  			   TableRow.append( "<td>" + Pname + "</td>");
+                  			  TableRow.append( "<td>" + data2.outcome + "</td>");
+                     		    
+                     	
+                  		
+                  		 
+                  		   
+                  		   $.each(data2.set, function (index1,data3) {
+                  			  
+                  			   TableRow.append("<td>" + data3 + "</td>");
+                  			 
+                  			    $("#datatable").append(TableRow);
+                        		
+                  			  
+                                 
+                        		});
+    	    		    		
+    	    		    	
+    	    		    		
+    	    		    	}//else if end.
+    	    		    	
+    	    		    	
+    	    		    	
+    	    		    	
+    	    		    	
+    	    		    });
+    	    		    			
+    	    		    			
+    	    		    			
+    	    		    			
+    	    		    			
+    	    		    			
+    	    		    });
+    	    		});
+    	    	
+    	    		
+    	    		
+    	    		
+    	    		
+    	    		
+    	    		
+    	    		
+    	    	
+    	    	
+    	    		  
+    	    		});//question 3 finish.
+//.......................................................................................................................................................
+    	    		//question 4 start here
+    	    	   
+    	   	 $("#setclick").click(function(event){
+    	  
+    	    	$("#datatable").empty()
+    	    	
+    	    	//remove selected one
+    	    	$('option:selected', 'select[id="#setchoice"]').removeAttr('selected');
+    	    	
+    	         
+    	          var setnumber =$("#setid").val();
+    	    	 
+				var Getchoice = $("#setchoice").val();
+				
+    	  
+				
+    	          
+    	        
+
+    	    	
+    	       
+    	    		$.getJSON('wimbledon-men-2013.json', function (data) {
+    	    			
+    	    			 var Header= ["Players","Set1","Set2","Set3","Set4","Set5"];
+    	          	  	var THead = $( "<thead></thead>");
+    	          	  	for (i =0;i<Header.length;i++){
+    	          	  		
+    	          	  		THead.append("<th>" + Header[i] + "</th>");
+    	          	  		
+    	          	  	 }
+    	          	  	 
+    	               
+    	                 $("#datatable").append(THead);
+    	 				
+    	     	          
+
+   		    		
+    	    		    // Iterate the groups first.
+    	    		    $.each(data.match, function (key, value) {
+    	    		    	var Round = (value.round)
+    	    		    $.each(value.player, function (index,data2) {
+    	    		    
+    	    		    
+    	    		    	var TableRow =$( "<tr></tr>");
+                    	
+    	    		    	TableRow.append("<td>" + data2.name + "</td>");
+                 			
+                 		 
+                 		   
+                 		   $.each(data2.set, function (index1,data3) {
+                 			
+                 			 var findset =Number(data3);
+                 			
+                 			var Setnumber =Number(setnumber);
+                 			var lessthan = Setnumber-1
+    	    		    	var greaterthan = Setnumber + 1
+                 			
+                 			
+                 			if(findset == Setnumber && Getchoice=='Equals'){
+                 				
+                 				  newdata = data3
+                 			} 
+                 			
+                 			else  if (  findset >=  Setnumber  && Getchoice=='Greater than'){
+                 				
+                 				newdata = data3
+                 				
+                 				
+                 			}
+                 			  
+                 			 
+							else  if (  findset <=  lessthan  && Getchoice=='Less Than'){
+                 				
+                 				newdata = data3
+                 			
+                 				
+                 			}
+                 			TableRow.append("<td>" + newdata + "</td>");
+                 			
+                 			
+                			 
+              			    $("#datatable").append(TableRow);
+                                
+                       		});
+                 		  
+                 			
+    	                         
+    	    		    		
+    	    		    });	
+    	    		    	
+    	    		    	
+    	    		    	
+    	    		
+    	    		
+    	    
+    	    		
+    	    		    });
+	    			
+    	    	
+    	    	  
+    	    		    });
+    	    		
+    	    		
+    	    		
+        	          
+        	        
+
+        	    	
+        	       
+        	    		$.getJSON('wimbledon-women-2013.json', function (data) {
+        	    			
+        	    			 
+        	 				
+        	     	          
+
+       		    		
+        	    		    // Iterate the groups first.
+        	    		    $.each(data.match, function (key, value) {
+        	    		    	var Round = (value.round)
+        	    		    $.each(value.player, function (index,data2) {
+        	    		    
+        	    		    
+        	    		    	var TableRow =$( "<tr></tr>");
+                        	
+        	    		    	TableRow.append("<td>" + data2.name + "</td>");
+                     			
+                     		 
+                     		   
+                     		   $.each(data2.set, function (index1,data3) {
+                     			
+                     			 var findset =Number(data3);
+                     			
+                     			var Setnumber =Number(setnumber);
+                     			var lessthan = Setnumber-1
+        	    		    	var greaterthan = Setnumber + 1
+                     			
+                     			
+                     			if(findset == Setnumber && Getchoice=='Equals'){
+                     				
+                     				  newdata = data3
+                     			} 
+                     			
+                     			else  if (  findset >=  Setnumber  && Getchoice=='Greater than'){
+                     				
+                     				newdata = data3
+                     				
+                     				
+                     			}
+                     			  
+                     			 
+    							else  if (  findset <=  lessthan  && Getchoice=='Less Than'){
+                     				
+                     				newdata = data3
+                     			
+                     				
+                     			}
+                     			TableRow.append("<td>" + newdata + "</td>");
+                     			
+                     			
+                    			 
+                  			    $("#datatable").append(TableRow);
+                                    
+                           		});
+                     		  
+                     			
+        	                         
+        	    		    		
+        	    		    });	
+        	    		    	
+        	    		    	
+        	    		    	
+        	    		
+        	    		
+        	    
+        	    		
+        	    		    });
+    	    			
+        	    	
+        	    	  
+        	    		    });
+        	    		
+        	    		
+        	    		
+    	    		
+    	    	
+    	    	
+    	    		  
+    	    		});//question 4 finish.
+//------------------------------------------------------------------------------------------------------------------------
+
+//Question5
+ $("#roundclick").click(function(event){
+    	  
+    	    	
+    	    	
+	 
+	 
+	
+   	  
+	    	$("#datatable").empty()
+	    	
+	    	//remove selected one
+	    	$('option:selected', 'select[id="#Roundchoice"]').removeAttr('selected');
+	    	
+	         
+	          var setnumber =$("#roundid").val();
+	    	 
+			var Getchoice = $("#Roundchoice").val();
+			
+			$.getJSON('wimbledon-men-2013.json', function (data) {
+				 var Header= ["Round","Player","Set1","Set2","Set3","Set4","Set5"];
+	          	  	var THead = $( "<thead></thead>");
+	          	  	for (i =0;i<Header.length;i++){
+	          	  		
+	          	  		THead.append("<th>" + Header[i] + "</th>");
+	          	  		
+	          	  	 }
+	          	  	 
+	               
+	                 $("#datatable").append(THead);
+	 				
+	                 $.each(data.match, function (key, value) {
+ 	    		    	var Round = (value.round)
+ 	    		     	var Round = (value.round)
+    	    		    $.each(value.player, function (index,data2) {
+    	    		    
+    	    		    
+    	    		    	var TableRow =$( "<tr></tr>");
+    	    		    	var Setnumber =Number(setnumber);
+    	    		    	var lessthan = Setnumber-1
+    	    		    	var greaterthan = Setnumber + 1
+    	    		    	
+    	    		    	if(Round == Setnumber && Getchoice=='Equals'){
+    	    		    		TableRow.append("<td>" + Round + "</td>");
+    	    		    		TableRow.append("<td>" + data2.name + "</td>");
+    	    		    		
+    	    		    		   $.each(data2.set, function (index1,data3) {
+    	                    			  
+                        			   TableRow.append("<td>" + data3 + "</td>");
+                        			 
+                        			    $("#datatable").append(TableRow);
+                              		
+                        			  
+                                       
+                              		});
+                        		  
+    	    		    		   
+    	    		    		   
+    	    		    		   
+    	    		    		   
+    	    		    		   
+               			} //if finish 
+               			
+							else  if (  Round >= greaterthan  && Getchoice=='Greater than'){
+                 				
+                 				
+                 				
+                 				
+                 		
+								TableRow.append("<td>" + Round + "</td>");
+    	    		    		TableRow.append("<td>" + data2.name + "</td>");
+    	    		    		
+    	    		    		   $.each(data2.set, function (index1,data3) {
+    	                    			  
+                        			   TableRow.append("<td>" + data3 + "</td>");
+                        			 
+                        			    $("#datatable").append(TableRow);
+                              		
+                        			  
+                                       
+                              		});
+                        		  
+							
+							
+							
+							}//elsefinish
+    	    		    	
+						else  if (  Round <=  lessthan && Getchoice=='Less Than'){
+                 				
+
+							TableRow.append("<td>" + Round + "</td>");
+	    		    		TableRow.append("<td>" + data2.name + "</td>");
+	    		    		
+	    		    		   $.each(data2.set, function (index1,data3) {
+	                    			  
+                    			   TableRow.append("<td>" + data3 + "</td>");
+                    			 
+                    			    $("#datatable").append(TableRow);
+                          		
+                    			  
+                                   
+                          		});
+                    		  
+                 			
+                 				
+                 			}//else if finish
+    	    		    	
+    	    		    	
+    	    		    	
+                    	
+    	    		    	
+ 	    		    	
+ 	    		    	
+    	    		    });	//player array	finsih		s
+	                 });//match array finish
+
+	    	
+	       
+	                 }); //get json finish
+	                 
+	                 
+
+	     	    	
+	     	    	//remove selected one
+	     	    
+	     			$.getJSON('wimbledon-women-2013.json', function (data) {
+	     				
+	     	 				
+	     	                 $.each(data.match, function (key, value) {
+	      	    		    	var Round = (value.round)
+	      	    		     	var Round = (value.round)
+	         	    		    $.each(value.player, function (index,data2) {
+	         	    		    
+	         	    		    
+	         	    		    	var TableRow =$( "<tr></tr>");
+	         	    		    	var Setnumber =Number(setnumber);
+	         	    		    	var lessthan = Setnumber-1
+	         	    		    	var greaterthan = Setnumber + 1
+	         	    		    	
+	         	    		    	if(Round == Setnumber && Getchoice=='Equals'){
+	         	    		    		TableRow.append("<td>" + Round + "</td>");
+	         	    		    		TableRow.append("<td>" + data2.name + "</td>");
+	         	    		    		
+	         	    		    		   $.each(data2.set, function (index1,data3) {
+	         	                    			  
+	                             			   TableRow.append("<td>" + data3 + "</td>");
+	                             			 
+	                             			    $("#datatable").append(TableRow);
+	                                   		
+	                             			  
+	                                            
+	                                   		});
+	                             		  
+	         	    		    		   
+	         	    		    		   
+	         	    		    		   
+	         	    		    		   
+	         	    		    		   
+	                    			} //if finish 
+	                    			
+	     							else  if (  Round >= greaterthan  && Getchoice=='Greater than'){
+	                      				
+	                      				
+	                      				
+	                      				
+	                      		
+	     								TableRow.append("<td>" + Round + "</td>");
+	         	    		    		TableRow.append("<td>" + data2.name + "</td>");
+	         	    		    		
+	         	    		    		   $.each(data2.set, function (index1,data3) {
+	         	                    			  
+	                             			   TableRow.append("<td>" + data3 + "</td>");
+	                             			 
+	                             			    $("#datatable").append(TableRow);
+	                                   		
+	                             			  
+	                                            
+	                                   		});
+	                             		  
+	     							
+	     							
+	     							
+	     							}//elsefinish
+	         	    		    	
+	     						else  if (  Round <=  lessthan && Getchoice=='Less Than'){
+	                      				
+
+	     							TableRow.append("<td>" + Round + "</td>");
+	     	    		    		TableRow.append("<td>" + data2.name + "</td>");
+	     	    		    		
+	     	    		    		   $.each(data2.set, function (index1,data3) {
+	     	                    			  
+	                         			   TableRow.append("<td>" + data3 + "</td>");
+	                         			 
+	                         			    $("#datatable").append(TableRow);
+	                               		
+	                         			  
+	                                        
+	                               		});
+	                         		  
+	                      			
+	                      				
+	                      			}//else if finish
+	         	    		    	
+	         	    		    	
+	         	    		    	
+	                         	
+	         	    		    	
+	      	    		    	
+	      	    		    	
+	         	    		    });	//player array	finsih		s
+	     	                 });//match array finish
+
+	     	    	
+	     	       
+	     	                 }); //get json finish
+	                 
+	                 
+	                 
+    	    		  
+    	    		});//question 5 finish.
+
+
+
+    	    //rest button.
+         	
+           
+         });//document create function end.
+         
+         
+         function removeTable(){
+     	    $('#datatable').empty();
+     	   window.location.reload();
+     	}
+         
+         
+        
+         
+         
+      </script>
+
+</head>
+<body>
+
+<!--div for header.-->
+    <div class ="header" >
+
+<h1>Wimbledon-2013</h1>
+</div>
+<!--form use for input data and display result on body.--> 
+<form >
+  <fieldset>
+   
+    <legend>Wimbledon - 2013</legend>
+    <!--dropdown box for select option for select match type--> 
+  
+    <select id='gender'>
+    	<option >Select Match</option>
+      <option>MEN</option>
+      <option >WOMEN</option>
+      
+      </select>
+     
+   
+      
+       <button type="button"  id="driver"> Loaddata </button>
+    
+	  <button type="button" id="Reset" onclick='removeTable()'>Reset</button>
+    
+    	  
+	
+	 
+	  
+  </fieldset>
+  
+ 
+  <fieldset>
+  <legend>Player detail</legend>
+  <p> Enter Player name if you forget full name enter first or last name and select drop down menu.</p>
+  player name
+  <input type = "text" name ="pname" id ='playername' >
+   <!--dropdown box for select option for finding a player name--> 
+ <select id='choice'>
+    	
+      <option >Equals</option>
+       <option> Contains</option>
+      <option >None</option>
+      
+      </select>
+      <button type = "button" id ='playerclick'> Get Data </button>
+      <button type="button" id="Reset" onclick='removeTable()'>Reset</button>
+  </fieldset>
+  <fieldset>
+  <legend>Set and Round details</legend>
+  <p> Enter number here and select the result type. </p>
+  Set Number
+  <input type = "text" name ="pname" id ='setid' size ="10">
+   <!--dropdown box for select option for set--> 
+ <select id='setchoice'>
+    	
+     
+       <option >Equals</option>
+       <option> Greater than</option>
+      <option >Less Than</option>
+      
+      </select>
+      <button type = "button" id ='setclick'> Get Data </button>
+      <button type="button" id="Reset" onclick='removeTable()'>Reset</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Round Number
+  <input type = "text" name ="pname" id ='roundid' size ="10" >
+   <!--dropdown box for select option for round.--> 
+ <select id='Roundchoice'>
+    	
+      <option >Equals</option>
+       <option> Greater than</option>
+      <option >Less Than</option>
+      
+      </select>
+      <button type = "button" id ='roundclick'> Get Data </button>
+      <button type="button" id="Reset" onclick='removeTable()'>Reset</button>
+  </fieldset>
+ 
+
+  
+</form>
+
+<div id =".floatLeft">
+<!--table create to store dynamic json data-->
+  <table id ="datatable" width="50%" style="float: left">
+	
+ 
+</table>
+</div>
+<div id =".floatRight">
+<!--table create to store dynamic json data-->
+  <table id ="wdatatable" width="50%" style="float: right">
+	
+ 
+</table>
+</div>
+
+
+
+  
+    
+	
+	
+    
+   </body>
+</html>
